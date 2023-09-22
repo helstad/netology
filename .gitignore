@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # Clion
-/.idea/
-/cmake-build-debugger/
+*/.idea/
+*/cmake-build-debugger/
 
 # User-specific files
 *.rsuser
