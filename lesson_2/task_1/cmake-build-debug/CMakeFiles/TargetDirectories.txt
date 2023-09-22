@@ -1,3 +1,0 @@
-D:/_dev/netology/lesson_2/task_1/cmake-build-debug/CMakeFiles/task_1.dir
-D:/_dev/netology/lesson_2/task_1/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/_dev/netology/lesson_2/task_1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
