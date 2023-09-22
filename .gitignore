@@ -5,7 +5,7 @@
 
 # Clion
 **/.idea/
-**/cmake-build-debugger/
+**/cmake-build-debug/
 
 # User-specific files
 *.rsuser
