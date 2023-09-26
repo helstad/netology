@@ -7,6 +7,10 @@ struct bank_account_info {
     double balance{};
 };
 
+void change_balance(bank_account_info& account, double new_balance) {
+    account.balance = new_balance;
+}
+
 int main() {
     bank_account_info info;
 
@@ -24,7 +28,7 @@ int main() {
     std::cout << "Enter new balance: ";
     std::cin >> new_balance;
 
-    info.balance = new_balance;
+    change_balance(info, new_balance);
 
     std::cout << "Your account: " << info.name << ", " << info.bank_account << ", " << info.balance << std::endl;
 
