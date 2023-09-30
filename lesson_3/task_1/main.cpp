@@ -2,7 +2,7 @@
 
 class Calculator {
 private:
-    double num1{}, num2{};
+    double num1 = 1, num2 = 1;
 public:
     double add() { return num1 + num2; }
 
