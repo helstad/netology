@@ -35,8 +35,6 @@ public:
     }
 };
 
-void sortAddress(Address *&pAddress, int i);
-
 bool openInputFile(std::ifstream &fin) {
     fin.open("in.txt");
     if (!fin.is_open()) {
