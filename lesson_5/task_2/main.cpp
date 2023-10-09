@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <valarray>
 
 class Figure {
 protected:
@@ -10,7 +9,7 @@ public:
     Figure(const std::string& figureName) : name(figureName) {}
 
     void printName() const {
-        std::cout << " - " << name << ":" << std::endl;
+        std::cout << "- " << name << ":" << std::endl;
     }
 };
 
