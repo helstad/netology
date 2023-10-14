@@ -8,8 +8,8 @@ protected:
 public:
     Figure(const std::string& figureName) : name(figureName) {}
 
-    void printName() const {
-        std::cout << "- " << name << ":" << std::endl;
+    virtual void print_info() const {
+        std::cout << name << ":" << std::endl;
     }
 };
 
@@ -22,8 +22,8 @@ public:
     Triangle(double a, double b, double c, double angleA, double angleB, double angleC) :
             Figure("Triangle"), sideA(a), sideB(b), sideC(c), angleA(angleA), angleB(angleB), angleC(angleC) {}
 
-    void print_info() const {
-        printName();
+    void print_info() const override {
+        Figure::print_info();
         std::cout << "Sides: a=" << sideA << " b=" << sideB << " c=" << sideC << std::endl;
         std::cout << "Angles: A=" << angleA << " B=" << angleB << " C=" << angleC << std::endl;
     }
@@ -59,8 +59,8 @@ public:
     Quadrangle(double a, double b, double c, double d, double angle1, double angle2, double angle3, double angle4) :
             Figure("Quadrangle"), sideA(a), sideB(b), sideC(c), sideD(d), angleA(angle1), angleB(angle2), angleC(angle3), angleD(angle4) {}
 
-    void print_info() const {
-        printName();
+    void print_info() const override {
+        Figure::print_info();
         std::cout << "Sides: a=" << sideA << " b=" << sideB << " c=" << sideC << " d=" << sideD << std::endl;
         std::cout << "Angles: A=" << angleA << " B=" << angleB << " C=" << angleC << " D=" << angleD << std::endl;
     }
@@ -105,15 +105,15 @@ int main() {
     Parallelogram parallelogram(20, 30, 30, 40);
     Rhombus rhombus(20, 30, 40);
 
-    triangle.print_info();
-    rightAngledTriangle.print_info();
-    isoscelesTriangle.print_info();
-    equilateralTriangle.print_info();
-    quadrangle.print_info();
-    rectangle.print_info();
-    square.print_info();
-    parallelogram.print_info();
-    rhombus.print_info();
+    Figure *figures[] = {
+            &triangle, &rightAngledTriangle, &isoscelesTriangle, &equilateralTriangle, &quadrangle, &rectangle,
+            &square, &parallelogram, &rhombus};
+
+    for (const auto &fig : figures)
+    {
+        fig->print_info();
+        std::cout << std::endl;
+    }
 
     return EXIT_SUCCESS;
 }
