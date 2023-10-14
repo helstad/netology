@@ -15,7 +15,7 @@ public:
 
     virtual void print_info() const
     {
-        std::cout << "- " << name << ":" << std::endl;
+        std::cout << name << ":" << std::endl;
         std::cout << "Count sides: " << sides << std::endl;
     }
 
@@ -59,7 +59,7 @@ public:
 
     bool check() const override
     {
-        return sides == 3 && (angleA + angleB + angleC == 180) && (angleC == 90);
+        return Triangle::check() && (angleC == 90);
     }
 };
 
@@ -73,7 +73,7 @@ public:
 
     bool check() const override
     {
-        return sides == 3 && (angleA + angleB + angleC == 180) && (sideA == sideC) && (angleA == angleC);
+        return Triangle::check() && (sideA == sideC) && (angleA == angleC);
     }
 };
 
@@ -87,7 +87,7 @@ public:
 
     bool check() const override
     {
-        return sides == 3 && (angleA + angleB + angleC == 180) && (sideA == sideB) && (sideB == sideC) &&
+        return Triangle::check() && (sideA == sideB) && (sideB == sideC) &&
                (angleA == angleB) && (angleB == angleC);
     }
 };
@@ -125,7 +125,7 @@ public:
 
     bool check() const override
     {
-        return sides == 4 && (angleA + angleB + angleC + angleD == 360) && (angleA == 90) && (angleB == 90) &&
+        return Quadrangle::check() && (angleA == 90) && (angleB == 90) &&
                (angleC == 90) && (angleD == 90);
     }
 };
@@ -140,7 +140,7 @@ public:
 
     bool check() const override
     {
-        return sides == 4 && (angleA + angleB + angleC + angleD == 360) && (angleA == 90) && (angleB == 90) &&
+        return Quadrangle::check() && (angleA == 90) && (angleB == 90) &&
                (angleC == 90) && (angleD == 90) && (sideA == sideB) && (sideB == sideC) && (sideC == sideD);
     }
 };
@@ -156,7 +156,7 @@ public:
 
     bool check() const override
     {
-        return sides == 4 && (angleA + angleB + angleC + angleD == 360) && (sideA == sideC) && (sideB == sideD) &&
+        return Quadrangle::check() && (sideA == sideC) && (sideB == sideD) &&
                (angleA == angleC) && (angleB == angleD);
     }
 };
@@ -171,7 +171,7 @@ public:
 
     bool check() const override
     {
-        return sides == 4 && (angleA + angleB + angleC + angleD == 360) && (sideA == sideB) && (sideB == sideC) &&
+        return Quadrangle::check() && (sideA == sideB) && (sideB == sideC) &&
                (sideC == sideD) && (angleA == angleC) && (angleB == angleD);
     }
 };
