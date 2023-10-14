@@ -8,5 +8,4 @@ public:
     Rectangle(double a, double b);
 };
 
-
 #endif //TASK_3_RECTANGLE_H

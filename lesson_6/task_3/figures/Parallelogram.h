@@ -1,5 +1,6 @@
 #ifndef TASK_3_PARALLELOGRAM_H
 #define TASK_3_PARALLELOGRAM_H
+
 #include "Quadrangle.h"
 
 class Parallelogram : public Quadrangle {
