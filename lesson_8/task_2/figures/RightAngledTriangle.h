@@ -6,7 +6,6 @@
 class RightAngledTriangle : public Triangle {
 public:
     RightAngledTriangle(double a, double b, double c, double angleA, double angleB);
-    bool check() const override;
 };
 
 #endif //TASK_3_RIGHTANGLEDTRIANGLE_H

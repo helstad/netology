@@ -6,7 +6,6 @@
 class Rhombus : public Quadrangle {
 public:
     Rhombus(double a, double angleA, double angleB);
-    bool check() const override;
 };
 
 #endif //TASK_3_RHOMBUS_H

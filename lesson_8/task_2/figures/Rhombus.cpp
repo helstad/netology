@@ -2,18 +2,11 @@
 #include "../exception/GeometryError.h"
 
 Rhombus::Rhombus(double a, double angleA, double angleB)
-        : Quadrangle(a, a, a, a, angleA, angleB, angleA, angleB) {
-    name = "Rhombus";
-}
-
-bool Rhombus::check() const {
-    Quadrangle::check();
+        : Quadrangle("Rhombus", a, a, a, a, angleA, angleB, angleA, angleB) {
     if (sideA != sideB || sideA != sideC || sideA != sideD) {
-        throw GeometryError("A rhombus must have all sides equal.");
+        throw GeometryError(name,"All sides must equal.");
     }
     if (angleA != angleC || angleB != angleD) {
-        throw GeometryError("A rhombus must have opposite angles equal.");
+        throw GeometryError(name,"A rhombus must have opposite angles equal.");
     }
-
-    return true;
 }

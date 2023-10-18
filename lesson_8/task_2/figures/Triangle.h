@@ -9,9 +9,9 @@ protected:
     double angleA, angleB, angleC;
 
 public:
+    Triangle(const std::string& name, double a, double b, double c, double angleA, double angleB, double angleC);
     Triangle(double a, double b, double c, double angleA, double angleB, double angleC);
     void print_info() const override;
-    bool check() const override;
 };
 
 #endif //TASK_3_TRIANGLE_H

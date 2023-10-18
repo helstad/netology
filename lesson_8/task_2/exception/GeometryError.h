@@ -6,8 +6,7 @@
 
 class GeometryError : public std::domain_error {
 public:
-    GeometryError(const std::string& message);
-
+    GeometryError(const std::string& name, const std::string& message);
 };
 
 #endif //TASK_2_GEOMETRYERROR_H

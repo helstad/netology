@@ -11,7 +11,6 @@ protected:
 public:
     Figure(const std::string& figureName);
     virtual void print_info() const;
-    virtual bool check() const;
 };
 
 #endif

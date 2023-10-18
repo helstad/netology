@@ -6,7 +6,6 @@
 class IsoscelesTriangle : public Triangle {
 public:
     IsoscelesTriangle(double a, double b, double angleA, double angleB);
-    bool check() const override;
 };
 
 #endif //TASK_3_ISOSCELESTRIANGLE_H

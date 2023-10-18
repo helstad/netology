@@ -6,7 +6,6 @@
 class EquilateralTriangle : public Triangle {
 public:
     EquilateralTriangle(double a);
-    bool check() const override;
 };
 
 #endif //TASK_3_EQUILATERALTRIANGLE_H
