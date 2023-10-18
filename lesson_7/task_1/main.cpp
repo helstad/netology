@@ -2,16 +2,15 @@
 
 #define MODE 1
 
+#ifndef MODE
+#error "MODE constant is required."
+#endif
+
 int add(int a, int b) {
     return a + b;
 }
 
 int main() {
-#ifndef MODE
-    std::cout << "A constant MODE is required." << std::endl;
-    return EXIT_FAILURE;
-#endif
-
 #if MODE == 0
     std::cout << "Training mode" << std::endl;
 #elif MODE == 1
