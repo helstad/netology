@@ -7,6 +7,6 @@ Rhombus::Rhombus(double a, double angleA, double angleB)
         throw GeometryError(name,"All sides must equal.");
     }
     if (angleA != angleC || angleB != angleD) {
-        throw GeometryError(name,"A rhombus must have opposite angles equal.");
+        throw GeometryError(name,"A must have opposite angles equal.");
     }
 }
