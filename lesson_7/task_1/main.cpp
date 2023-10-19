@@ -3,7 +3,7 @@
 #define MODE 1
 
 #ifndef MODE
-#error "MODE constant is required."
+#error MODE constant is required.
 #endif
 
 int add(int a, int b) {
