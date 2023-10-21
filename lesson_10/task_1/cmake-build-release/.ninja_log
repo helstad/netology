@@ -1,3 +1,6 @@
 # ninja log v5
-0	1066	7196142208483273	CMakeFiles/task_1.dir/main.cpp.obj	20d6528d6efad05f
 1067	1229	7196142210084296	task_1.exe	28377afc09e7decf
+0	1066	7196142208483273	CMakeFiles/task_1.dir/main.cpp.obj	20d6528d6efad05f
+7	191	7196144885325863	build.ninja	fe18ccbd48d8a2f1
+1	402	7196144909905347	CMakeFiles/my_first_cmake_project.dir/main.cpp.obj	a32b0b52b8a9b4d2
+2160	2276	7196144928619184	my_first_cmake_project.exe	708cffde03910756

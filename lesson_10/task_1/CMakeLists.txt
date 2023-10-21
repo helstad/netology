@@ -3,4 +3,4 @@ project(my_first_cmake_project)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(task_1 main.cpp)
+add_executable(my_first_cmake_project main.cpp)
