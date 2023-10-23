@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(lib)
-set(source
-        Greeter.h Greeter.cpp)
-add_library(static STATIC ${source})
+project(StaticLibApp)
+set(SOURCES Greeter.cpp)
+add_library(Library STATIC ${SOURCES})
+target_include_directories(Library PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
