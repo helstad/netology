@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.26)
 project(StaticApp)
 
-set(CMAKE_CXX_STANDARD 17)
+include_directories(lib)
 
-set(SRC main.cpp)
-set(LIB lib/Greeter.cpp)
+add_executable(static_lib main.cpp)
+add_subdirectory(lib)
 
-add_library(static_lib STATIC ${LIB})
-add_executable(app ${SRC})
-target_link_libraries(app static_lib)
+target_link_libraries(static_lib static)
