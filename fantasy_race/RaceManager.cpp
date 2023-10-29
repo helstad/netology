@@ -1,6 +1,6 @@
 #include <iostream>
 #include "RaceManager.h"
-#include "RaceDLL/EntitysList.h"
+#include "RaceDLL/EntitiesList.h"
 
 RaceManager::RaceManager() {
     initAvailableParticipants();

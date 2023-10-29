@@ -20,5 +20,5 @@ add_executable(fantasy_race main.cpp
         RaceDLL/BootsTerrain.h
         RaceManager.cpp
         RaceManager.h
-        RaceDLL/EntitysList.h
+        RaceDLL/EntitiesList.h
 )
