@@ -21,4 +21,12 @@ add_executable(fantasy_race main.cpp
         RaceManager.cpp
         RaceManager.h
         RaceDLL/EntitiesList.h
+        RaceDLL/MagicCarpet.cpp
+        RaceDLL/MagicCarpet.h
+        RaceDLL/Eagle.cpp
+        RaceDLL/Eagle.h
+        RaceDLL/Track.cpp
+        RaceDLL/Track.h
+        GameManager.cpp
+        GameManager.h
 )

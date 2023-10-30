@@ -6,6 +6,14 @@ RaceManager::RaceManager() {
     initAvailableParticipants();
 }
 
+void RaceManager::createTrack(double distance) {
+    track.setDistance(distance);
+}
+
+void RaceManager::showTrackDistance() const {
+    std::cout << "Track length: " << track.getDistance() << " units" << std::endl;
+}
+
 void RaceManager::initAvailableParticipants() {
     availableParticipants.push_back(new Camel());
     availableParticipants.push_back(new FastCamel());

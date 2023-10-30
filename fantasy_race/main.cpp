@@ -1,4 +1,5 @@
 #include <iostream>
+#include "GameManager.h"
 #include "RaceManager.h"
 
 int main() {
@@ -6,11 +7,20 @@ int main() {
 
     std::cout << "Welcome to the Fantasy Race.\n";
 
+    int raceType = GameManager::chooseRaceType();
+    if (raceType == 0) {
+        return 0;
+    }
+
+    double distance = GameManager::enterTrackDistance();
+    raceManager.createTrack(distance);
+
     while (true) {
         std::cout << "Menu:" << std::endl;
         std::cout << "1. Show registered participants" << std::endl;
         std::cout << "2. Register a participant" << std::endl;
-        std::cout << "3. Start race" << std::endl;
+        std::cout << "3. Show race length" << std::endl;
+        std::cout << "4. Start race" << std::endl;
         std::cout << "0. Exit" << std::endl;
 
         int choice{};
@@ -32,6 +42,9 @@ int main() {
                 }
                 break;
             case 3:
+                raceManager.showTrackDistance();
+                break;
+            case 4:
                 raceManager.startRace();
                 break;
             case 0:

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Entity.h"
+#include <vector>
 
 class AirEntity : public Entity {
-private:
-    double distanceReduction;
 public:
-    AirEntity(std::string entityName, double entitySpeed, double reduction);
-    [[nodiscard]] double getDistanceReduction() const;
+    AirEntity(std::string entityName, double entitySpeed);
+
+    [[nodiscard]] virtual double getDistanceReduction(double distance) const = 0;
 };
