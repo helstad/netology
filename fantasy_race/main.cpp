@@ -26,10 +26,10 @@ void menuMainMenu() {
     dataMainMenu();
 }
 
-//void menuEntity(GameManager &gameManager) {
-//    std::vector<std::string> showParticipants = gameManager.getParticipantNames();
-//    createMenu(showParticipants);
-//}
+void menuEntity(GameManager &gameManager) {
+//    std::vector<std::string> showParticipants = gameManager.getParticipants();
+    createMenu(gameManager.getParticipants());
+}
 
 void menuDistance() {
     std::cout << "Enter a track distance: " << std::endl;
@@ -56,14 +56,25 @@ int main() {
 
     GameManager gameManager(raceType, distance);
 
-//    menuEntity();
+//    menuEntity(gameManager);
 
-//    int choice{};
-//    do {
-//        menuMainMenu();
-//        menuEntity();
-//        std::cout << "0. Exit" << std::endl;
-//        std::cin >> choice;
-//
-//    } while (choice != 0);
+    int choice{};
+    do {
+        menuMainMenu();
+        std::cout << "0. Exit" << std::endl;
+        std::cin >> choice;
+
+        switch (choice) {
+            case 1:
+                break;
+            case 2:
+                menuEntity(gameManager);
+                break;
+            case 0:
+                std::cout << "Back to menu" << std::endl;
+            default:
+                std::cout << "Invalid value" << std::endl;
+        }
+
+    } while (choice != 0);
 }

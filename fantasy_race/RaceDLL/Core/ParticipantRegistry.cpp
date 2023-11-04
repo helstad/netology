@@ -47,11 +47,6 @@ ParticipantRegistry::~ParticipantRegistry() {
 
 std::vector<std::string> ParticipantRegistry::getParticipantNames() const {
     std::vector<std::string> participantNames;
-//    for (const Entity* participant : availableParticipants) {
-//        participantNames.push_back(participant->getName());
-//    }
-//    return participantNames;
-
     for (auto availableParticipant : availableParticipants) {
         participantNames.push_back(availableParticipant->getName());
     }
