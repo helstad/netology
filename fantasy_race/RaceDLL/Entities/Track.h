@@ -4,8 +4,6 @@ class Track {
 private:
     double distance{};
 public:
-    Track();
-
-    void setDistance(double newDistance);
+    Track(double distance);
     double getDistance() const;
 };

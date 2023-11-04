@@ -1,0 +1,12 @@
+#pragma once
+// Ground
+#include "GroundEntities/Camel.h"
+#include "GroundEntities/FastCamel.h"
+#include "GroundEntities/Centaur.h"
+#include "GroundEntities/BootsTerrain.h"
+// Air
+#include "AirEntities/MagicCarpet.h"
+#include "AirEntities/Eagle.h"
+#include "AirEntities/Broomstick.h"
+// Race
+#include "Track.h"

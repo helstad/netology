@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Entity.h"
+#include "../Entity.h"
 #include <vector>
 
 class GroundEntity : public Entity {

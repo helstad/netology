@@ -1,58 +1,69 @@
 #include <iostream>
-#include "GameManager.h"
-#include "RaceManager.h"
+#include <vector>
+#include "RaceDLL/GameManager.h"
+#include "RaceDLL/Core/ParticipantRegistry.h"
+
+void createMenu(const std::vector<std::string>& option) {
+    for (size_t i = 0; i < option.size(); ++i) {
+        std::cout << i + 1 << ". " << option[i] << std::endl;
+    }
+}
+
+void dataMainMenu() {
+    std::vector<std::string> mainMenu = {
+            "Start Race",
+            "Register Participant",
+            "Show Registered Participants",
+            "Show Track Distance",
+            "Change Race Type",
+            "Change Track Distance"
+    };
+    createMenu(mainMenu);
+}
+
+void menuMainMenu() {
+    std::cout << "Menu: " << std::endl;
+    dataMainMenu();
+}
+
+//void menuEntity(GameManager &gameManager) {
+//    std::vector<std::string> showParticipants = gameManager.getParticipantNames();
+//    createMenu(showParticipants);
+//}
+
+void menuDistance() {
+    std::cout << "Enter a track distance: " << std::endl;
+}
+
+void dataRaceType() {
+    std::vector<std::string> raceTypes = {"Ground racing", "Air racing", "Combined racing"};
+    createMenu(raceTypes);
+}
+
+void menuRaceType() {
+    std::cout << "Choose a race type:" << std::endl;
+    dataRaceType();
+}
 
 int main() {
-    RaceManager raceManager;
+    menuRaceType();
+    int raceType{};
+    std::cin >> raceType;
 
-    std::cout << "Welcome to the Fantasy Race.\n";
+    menuDistance();
+    double distance{};
+    std::cin >> distance;
 
-    int raceType = GameManager::chooseRaceType();
-    if (raceType == 0) {
-        return 0;
-    }
+    GameManager gameManager(raceType, distance);
 
-    double distance = GameManager::enterTrackDistance();
-    raceManager.createTrack(distance);
+//    menuEntity();
 
-    while (true) {
-        std::cout << "Menu:" << std::endl;
-        std::cout << "1. Show registered participants" << std::endl;
-        std::cout << "2. Register a participant" << std::endl;
-        std::cout << "3. Show race length" << std::endl;
-        std::cout << "4. Start race" << std::endl;
-        std::cout << "0. Exit" << std::endl;
-
-        int choice{};
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1:
-                raceManager.showRegisteredParticipants();
-                break;
-            case 2:
-                raceManager.showAvailableParticipants();
-                int participantChoice;
-                std::cout << "Choose participant: ";
-                std::cin >> participantChoice;
-                if (participantChoice == 0) {
-                    std::cout << "Back to the menu." << std::endl;
-                } else {
-                    raceManager.registerParticipant(participantChoice);
-                }
-                break;
-            case 3:
-                raceManager.showTrackDistance();
-                break;
-            case 4:
-                raceManager.startRace();
-                break;
-            case 0:
-                return 0;
-            default:
-                std::cout << "Invalid choice. Try again." << std::endl;
-                break;
-        }
-    }
-    return 0;
+//    int choice{};
+//    do {
+//        menuMainMenu();
+//        menuEntity();
+//        std::cout << "0. Exit" << std::endl;
+//        std::cin >> choice;
+//
+//    } while (choice != 0);
 }
