@@ -12,6 +12,7 @@ enum class RaceType {
 
 class ParticipantRegistry {
 private:
+    std::vector<Entity *> participants;
     std::vector<Entity *> availableParticipants;
 
     void initGroundParticipants();

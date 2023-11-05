@@ -4,6 +4,6 @@ class Track {
 private:
     double distance{};
 public:
-    Track(double distance);
+    explicit Track(double distance);
     double getDistance() const;
 };
