@@ -18,8 +18,6 @@ add_executable(fantasy_race main.cpp
         RaceDLL/Entities/GroundEntities/Centaur.h
         RaceDLL/Entities/GroundEntities/BootsTerrain.cpp
         RaceDLL/Entities/GroundEntities/BootsTerrain.h
-        RaceManager.cpp
-        RaceManager.h
         RaceDLL/Entities/EntitiesList.h
         RaceDLL/Entities/AirEntities/MagicCarpet.cpp
         RaceDLL/Entities/AirEntities/MagicCarpet.h
@@ -27,14 +25,10 @@ add_executable(fantasy_race main.cpp
         RaceDLL/Entities/AirEntities/Eagle.h
         RaceDLL/Entities/Track.cpp
         RaceDLL/Entities/Track.h
-        GameManager.cpp
-        GameManager.h
         RaceDLL/Core/ParticipantRegistry.cpp
         RaceDLL/Core/ParticipantRegistry.h
         RaceDLL/GameManager.cpp
         RaceDLL/GameManager.h
-        RaceDLL/Text/Menu.cpp
-        RaceDLL/Text/Menu.h
         RaceDLL/Entities/AirEntities/Broomstick.cpp
         RaceDLL/Entities/AirEntities/Broomstick.h
 )

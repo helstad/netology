@@ -23,8 +23,7 @@ private:
 
 public:
     explicit ParticipantRegistry(RaceType raceType);
-    ~ParticipantRegistry();
-    void registerParticipant(const std::string& participantName);
+    void changeRaceType(RaceType newRaceType);
     void setRegisteredParticipants(int choice);
     std::vector<std::string> getRegisteredParticipants() const;
     std::vector<std::string> getAvailableParticipants() const;

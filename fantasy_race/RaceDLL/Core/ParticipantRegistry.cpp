@@ -20,6 +20,20 @@ void ParticipantRegistry::setAvailableParticipants(RaceType raceType) {
     }
 }
 
+void ParticipantRegistry::changeRaceType(RaceType newRaceType) {
+    for (Entity* participant : availableParticipants) {
+        delete participant;
+    }
+    availableParticipants.clear();
+
+    for (Entity* participant : registeredParticipants) {
+        delete participant;
+    }
+    registeredParticipants.clear();
+
+    setAvailableParticipants(newRaceType);
+}
+
 void ParticipantRegistry::initGroundParticipants() {
     availableParticipants.push_back(new Camel());
     availableParticipants.push_back(new FastCamel());
@@ -43,13 +57,6 @@ void ParticipantRegistry::setRegisteredParticipants(int choice) {
     availableParticipants.erase(availableParticipants.begin() + choice - 1);
 }
 
-ParticipantRegistry::~ParticipantRegistry() {
-    for (Entity* participant : availableParticipants) {
-        delete participant;
-    }
-    availableParticipants.clear();
-}
-
 std::vector<std::string> ParticipantRegistry::getRegisteredParticipants() const {
     std::vector<std::string> participantNames;
     for (auto registeredParticipant : registeredParticipants) {
@@ -65,27 +72,3 @@ std::vector<std::string> ParticipantRegistry::getAvailableParticipants() const {
     }
     return participantNames;
 }
-
-
-
-//    if (choice == 0) {
-//        return;
-//    }
-//
-//    if (choice > 0 && choice <= availableParticipants.size()) {
-//        participants.push_back(availableParticipants[choice - 1]);
-//
-//    }
-//}
-//    if (choice == 0) {
-//        return;
-//    }
-//
-//    if (choice > 0 && choice <= availableParticipants.size()) {
-//        participants.push_back(availableParticipants[choice - 1]);
-//        std::string participantName = availableParticipants[choice - 1]->getName();
-//        availableParticipants.erase(availableParticipants.begin() + choice - 1);
-//        std::cout << "Participant " << participantName << " added to the race." << std::endl;
-//    } else {
-//        std::cout << "Invalid choice. Please select a valid participant." << std::endl;
-//    }

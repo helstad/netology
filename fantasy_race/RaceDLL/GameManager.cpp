@@ -2,14 +2,22 @@
 #include "Core/ParticipantRegistry.h"
 #include <vector>
 
-GameManager::GameManager(int raceType, double distance)
-        : participantRegistry(static_cast<RaceType>(raceType)), track(distance) {
-//    participantRegistry = ParticipantRegistry(static_cast<RaceType>(raceType));
+GameManager::GameManager(int initialRaceType, double distance)
+        : raceType(initialRaceType), participantRegistry(static_cast<RaceType>(initialRaceType)), track(distance) {
+    registeredParticipants.clear();
     availableParticipants = participantRegistry.getAvailableParticipants();
+}
+
+void GameManager::changeRaceType(int newRaceType) {
+    participantRegistry.changeRaceType(static_cast<RaceType>(newRaceType));
 }
 
 double GameManager::getDistance() const {
     return track.getDistance();
+}
+
+void GameManager::startRace() {
+
 }
 
 std::vector<std::string> GameManager::getParticipants() {
@@ -32,6 +40,10 @@ std::vector<std::string> GameManager::getRegisteredParticipants() {
 
 void GameManager::registerParticipant(int choice) {
     participantRegistry.setRegisteredParticipants(choice);
+}
+
+void GameManager::changeTrackDistance(double newTrackDistance) {
+    track.setDistance(newTrackDistance);
 }
 
 //    if (choice == 0) {
