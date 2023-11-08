@@ -3,15 +3,18 @@
 #include <string>
 #include <vector>
 #include "Entities/Track.h"
+#include "Core/ParticipantRegistry.h"
 
 class GameManager {
 private:
     Track track;
-    int raceType;
+    ParticipantRegistry participantRegistry;
     std::vector<std::string> availableParticipants;
+    std::vector<std::string> registeredParticipants;
 public:
     GameManager(int raceType, double distance);
-    double getDistance() const;
-    void registerParticipant();
+    void registerParticipant(int choice);
     std::vector<std::string> getParticipants();
+    std::vector<std::string> getRegisteredParticipants();
+    double getDistance() const;
 };

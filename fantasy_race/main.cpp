@@ -2,29 +2,50 @@
 #include <vector>
 #include "RaceDLL/GameManager.h"
 
-void menuEntity() {
-//    for (size_t i = 0; i < option.size(); ++i) {
-//        std::cout << i + 1 << ". " << option[i] << std::endl;
-//    }
+void menuEntity(GameManager &gameManager) {
+
+    std::vector<std::string> participants;
+    participants.clear();
+    participants = gameManager.getParticipants();
+
+    for (size_t i = 0; i < participants.size(); ++i) {
+        std::cout << "[" << i + 1 << "] " << participants[i] << std::endl;
+    }
+    std::cout << "[0] Close registration" << std::endl;
+}
+
+void showRegisterParticipant(GameManager &gameManager) {
+    std::cout << "Registered participants: " << std::endl;
+
+    std::vector<std::string> participants;
+    participants = gameManager.getRegisteredParticipants();
+
+    if (participants.empty()) {
+        std::cout << "None" << std::endl;
+        return;
+    }
+
+    for (const auto & participant : participants) {
+        std::cout << " - " << participant << std::endl;
+    }
 }
 
 void registerParticipant(GameManager &gameManager) {
-//    do {
-//        std::cin >> choice;
-//
-//        switch (choice) {
-//            case 1:
-//                break;
-//            case 2:
-//                menuEntity(gameManager);
-//                break;
-//            case 0:
-//                std::cout << "Back to menu" << std::endl;
-//            default:
-//                std::cout << "Invalid value" << std::endl;
-//        }
-//
-//    } while (choice != 0);
+    int choice{};
+    std::vector<std::string> participants;
+    do {
+        std::cout << "Add participants: " << std::endl;
+        participants.clear();
+        participants = gameManager.getParticipants();
+        menuEntity(gameManager);
+        std::cin >> choice;
+
+        if (choice <= 0 || choice > participants.size()) {
+            std::cout << "Invalid participants" << std::endl;
+            return;
+        }
+        gameManager.registerParticipant(choice);
+    } while (choice != 0);
 }
 
 void setMenuChoice(int choice, GameManager &gameManager) {
@@ -33,10 +54,10 @@ void setMenuChoice(int choice, GameManager &gameManager) {
             std::cout << "Start race" << std::endl;
             break;
         case 2:
-            std::cout << "Register a participant" << std::endl;
+            registerParticipant(gameManager);
             break;
         case 3:
-            std::cout << "Show registered participants" << std::endl;
+            showRegisterParticipant(gameManager);
             break;
         case 4:
             std::cout << "- Your track length: " << gameManager.getDistance() << std::endl;
@@ -52,6 +73,7 @@ void setMenuChoice(int choice, GameManager &gameManager) {
             break;
         default:
             std::cout << "Invalid value" << std::endl;
+            break;
     }
     std::cout << std::endl;
 }
@@ -73,20 +95,36 @@ void menuMain(GameManager &gameManager) {
     } while (choice != 0);
 }
 
-int menuRaceType(int raceType) {
+int menuRaceType() {
     int choice{};
 
-    std::cout << "1. Ground race" << std::endl;
-    std::cout << "2. Air race" << std::endl;
-    std::cout << "3. Combined race" << std::endl;
-    std::cin >> choice;
+    while (true) {
+        std::cout << "1. Ground race" << std::endl;
+        std::cout << "2. Air race" << std::endl;
+        std::cout << "3. Combined race" << std::endl;
+        std::cin >> choice;
 
-    return raceType;
+        if (choice >= 1 && choice <= 3) {
+            break;
+        } else {
+            std::cout << "Invalid value. Please enter a value between 1 and 3." << std::endl;
+        }
+    }
+
+    return choice;
 }
 
 double menuTrackDistance(double trackDistance) {
-    std::cout << "Enter track distance" << std::endl;
-    std::cin >> trackDistance;
+    while (true) {
+        std::cout << "Enter track distance between 500 and 100 000 units:" << std::endl;
+        std::cin >> trackDistance;
+
+        if (trackDistance > 500 && trackDistance <= 100000) {
+            break;
+        } else {
+            std::cout << "Invalid value. Please enter a value between 500 and 100 000." << std::endl;
+        }
+    }
 
     return trackDistance;
 }
@@ -94,7 +132,7 @@ double menuTrackDistance(double trackDistance) {
 int main() {
     std::cout << "Welcome to \"The Fantasy Race\"" << std::endl;
 
-    int raceType = menuRaceType(raceType);
+    int raceType = menuRaceType();
     double trackDistance = menuTrackDistance(trackDistance);
 
     GameManager gameManager(raceType, trackDistance);

@@ -14,6 +14,7 @@ class ParticipantRegistry {
 private:
     std::vector<Entity *> participants;
     std::vector<Entity *> availableParticipants;
+    std::vector<Entity *> registeredParticipants;
 
     void initGroundParticipants();
     void initAirParticipants();
@@ -23,5 +24,8 @@ private:
 public:
     explicit ParticipantRegistry(RaceType raceType);
     ~ParticipantRegistry();
-    std::vector<std::string> getParticipantNames() const;
+    void registerParticipant(const std::string& participantName);
+    void setRegisteredParticipants(int choice);
+    std::vector<std::string> getRegisteredParticipants() const;
+    std::vector<std::string> getAvailableParticipants() const;
 };

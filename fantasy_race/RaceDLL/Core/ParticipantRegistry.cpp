@@ -38,6 +38,11 @@ void ParticipantRegistry::initCombinedParticipants() {
     initAirParticipants();
 }
 
+void ParticipantRegistry::setRegisteredParticipants(int choice) {
+    registeredParticipants.push_back(availableParticipants[choice - 1]);
+    availableParticipants.erase(availableParticipants.begin() + choice - 1);
+}
+
 ParticipantRegistry::~ParticipantRegistry() {
     for (Entity* participant : availableParticipants) {
         delete participant;
@@ -45,10 +50,42 @@ ParticipantRegistry::~ParticipantRegistry() {
     availableParticipants.clear();
 }
 
-std::vector<std::string> ParticipantRegistry::getParticipantNames() const {
+std::vector<std::string> ParticipantRegistry::getRegisteredParticipants() const {
+    std::vector<std::string> participantNames;
+    for (auto registeredParticipant : registeredParticipants) {
+        participantNames.push_back(registeredParticipant->getName());
+    }
+    return participantNames;
+}
+
+std::vector<std::string> ParticipantRegistry::getAvailableParticipants() const {
     std::vector<std::string> participantNames;
     for (auto availableParticipant : availableParticipants) {
         participantNames.push_back(availableParticipant->getName());
     }
     return participantNames;
 }
+
+
+
+//    if (choice == 0) {
+//        return;
+//    }
+//
+//    if (choice > 0 && choice <= availableParticipants.size()) {
+//        participants.push_back(availableParticipants[choice - 1]);
+//
+//    }
+//}
+//    if (choice == 0) {
+//        return;
+//    }
+//
+//    if (choice > 0 && choice <= availableParticipants.size()) {
+//        participants.push_back(availableParticipants[choice - 1]);
+//        std::string participantName = availableParticipants[choice - 1]->getName();
+//        availableParticipants.erase(availableParticipants.begin() + choice - 1);
+//        std::cout << "Participant " << participantName << " added to the race." << std::endl;
+//    } else {
+//        std::cout << "Invalid choice. Please select a valid participant." << std::endl;
+//    }
