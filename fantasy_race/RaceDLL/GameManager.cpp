@@ -60,16 +60,3 @@ void GameManager::registerParticipant(int choice) {
 void GameManager::changeTrackDistance(double newTrackDistance) {
     track.setDistance(newTrackDistance);
 }
-
-//    if (choice == 0) {
-//        return;
-//    }
-//
-//    if (choice > 0 && choice <= availableParticipants.size()) {
-//        participants.push_back(availableParticipants[choice - 1]);
-//        std::string participantName = availableParticipants[choice - 1]->getName();
-//        availableParticipants.erase(availableParticipants.begin() + choice - 1);
-//        std::cout << "Participant " << participantName << " added to the race." << std::endl;
-//    } else {
-//        std::cout << "Invalid choice. Please select a valid participant." << std::endl;
-//    }

@@ -33,4 +33,6 @@ add_executable(fantasy_race main.cpp
         RaceDLL/Entities/AirEntities/Broomstick.h
         RaceDLL/Core/RaceCalculation.cpp
         RaceDLL/Core/RaceCalculation.h
+        UserInterface.cpp
+        UserInterface.h
 )

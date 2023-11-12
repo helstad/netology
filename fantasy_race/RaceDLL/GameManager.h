@@ -26,4 +26,6 @@ public:
     void resultRace(RaceCalculation &raceCalculation);
 
     std::vector<std::pair<std::string, double>> getResult();
+
+    void resetRace();
 };
