@@ -4,4 +4,6 @@
 class FastCamel : public GroundEntity {
 public:
     FastCamel();
+
+    double getTotalTravelTime(double distance);
 };

@@ -4,4 +4,6 @@
 class Centaur : public GroundEntity {
 public:
     Centaur();
+
+    double getTotalTravelTime(double distance);
 };

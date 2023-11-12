@@ -25,6 +25,6 @@ public:
     explicit ParticipantRegistry(RaceType raceType);
     void changeRaceType(RaceType newRaceType);
     void setRegisteredParticipants(int choice);
-    std::vector<std::string> getRegisteredParticipants() const;
-    std::vector<std::string> getAvailableParticipants() const;
+    std::vector<Entity *> getRegisteredParticipants() const;
+    std::vector<Entity *> getAvailableParticipants() const;
 };

@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "Core/ParticipantRegistry.h"
+#include "Core/RaceCalculation.h"
 #include <vector>
 
 GameManager::GameManager(int initialRaceType, double distance)
@@ -16,26 +17,40 @@ double GameManager::getDistance() const {
     return track.getDistance();
 }
 
-void GameManager::startRace() {
-
+std::vector<std::pair<std::string, double>> GameManager::getResult() {
+    return result;
 }
 
-std::vector<std::string> GameManager::getParticipants() {
-    availableParticipants = participantRegistry.getAvailableParticipants();
-    std::vector<std::string> participants;
-    for (const auto &availableParticipant: availableParticipants) {
-        participants.push_back(availableParticipant);
+void GameManager::resultRace(RaceCalculation &raceCalculation) {
+    result = raceCalculation.getRaceResults();
+}
+
+void GameManager::startRace() {
+    std::vector<Entity *> registeredParticipants = participantRegistry.getRegisteredParticipants();
+    RaceCalculation raceCalculation(registeredParticipants, getDistance());
+    resultRace(raceCalculation);
+}
+
+std::vector<std::string> GameManager::getAvailableParticipants() {
+    std::vector<Entity *> availableParticipants = participantRegistry.getAvailableParticipants();
+    std::vector<std::string> participantName;
+
+    for (Entity *participant : availableParticipants) {
+        participantName.push_back(participant->getName());
     }
-    return participants;
+
+    return participantName;
 }
 
 std::vector<std::string> GameManager::getRegisteredParticipants() {
-    registeredParticipants = participantRegistry.getRegisteredParticipants();
-    std::vector<std::string> participants;
-    for (const auto &registeredParticipant: registeredParticipants) {
-        participants.push_back(registeredParticipant);
+    std::vector<Entity *> registeredParticipants = participantRegistry.getRegisteredParticipants();
+    std::vector<std::string> participantName;
+
+    for (Entity *participant: registeredParticipants) {
+        participantName.push_back(participant->getName());
     }
-    return participants;
+
+    return participantName;
 }
 
 void GameManager::registerParticipant(int choice) {

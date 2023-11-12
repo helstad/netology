@@ -8,6 +8,8 @@ private:
     double speed{};
 public:
     Entity(std::string entityName, double entitySpeed);
-    [[nodiscard]] std::string getName() const;
-    [[nodiscard]] double getSpeed() const;
+    virtual ~Entity() = default;
+    [[nodiscard]] virtual std::string getName() const;
+    [[nodiscard]] virtual double getSpeed() const;
+    [[nodiscard]] virtual double getTotalTravelTime(double distance) = 0;
 };

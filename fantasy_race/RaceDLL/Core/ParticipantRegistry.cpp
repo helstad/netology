@@ -57,18 +57,18 @@ void ParticipantRegistry::setRegisteredParticipants(int choice) {
     availableParticipants.erase(availableParticipants.begin() + choice - 1);
 }
 
-std::vector<std::string> ParticipantRegistry::getRegisteredParticipants() const {
-    std::vector<std::string> participantNames;
+std::vector<Entity *> ParticipantRegistry::getRegisteredParticipants() const {
+    std::vector<Entity *> participantNames;
     for (auto registeredParticipant : registeredParticipants) {
-        participantNames.push_back(registeredParticipant->getName());
+        participantNames.push_back(registeredParticipant);
     }
     return participantNames;
 }
 
-std::vector<std::string> ParticipantRegistry::getAvailableParticipants() const {
-    std::vector<std::string> participantNames;
+std::vector<Entity *> ParticipantRegistry::getAvailableParticipants() const {
+    std::vector<Entity *> participantNames;
     for (auto availableParticipant : availableParticipants) {
-        participantNames.push_back(availableParticipant->getName());
+        participantNames.push_back(availableParticipant);
     }
     return participantNames;
 }

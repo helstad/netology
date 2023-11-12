@@ -4,7 +4,7 @@
 
 class Eagle : public AirEntity {
 private:
-//    [[nodiscard]] double getDistanceReduction(double distance) const override;
+    [[nodiscard]] double getDistanceReduction(double distance) override;
 public:
     Eagle();
 };

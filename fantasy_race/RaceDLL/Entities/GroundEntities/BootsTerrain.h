@@ -4,4 +4,6 @@
 class BootsTerrain : public GroundEntity {
 public:
     BootsTerrain();
+
+    double getTotalTravelTime(double distance);
 };

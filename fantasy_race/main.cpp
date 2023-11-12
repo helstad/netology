@@ -23,13 +23,13 @@ int menuRaceType() {
 
 double menuTrackDistance(double trackDistance) {
     while (true) {
-        std::cout << "Enter track distance between 500 and 100,000 units:" << std::endl;
+        std::cout << "Enter track distance between 100 and 100,000 units:" << std::endl;
         std::cin >> trackDistance;
 
-        if (trackDistance > 500 && trackDistance <= 100000) {
+        if (trackDistance >= 100 && trackDistance <= 100000) {
             break;
         } else {
-            std::cout << "Invalid value. Please enter a value between 500 and 100,000." << std::endl;
+            std::cout << "Invalid value. Please enter a value between 100 and 100,000." << std::endl;
         }
     }
 
@@ -38,7 +38,7 @@ double menuTrackDistance(double trackDistance) {
 
 void menuEntity(GameManager &gameManager) {
     std::vector<std::string> participants;
-    participants = gameManager.getParticipants();
+    participants = gameManager.getAvailableParticipants();
 
     for (size_t i = 0; i < participants.size(); ++i) {
         std::cout << "[" << i + 1 << "] " << participants[i] << std::endl;
@@ -81,7 +81,7 @@ void registerParticipant(GameManager &gameManager) {
     std::vector<std::string> participants;
     do {
         std::cout << "Add participants: " << std::endl;
-        participants = gameManager.getParticipants();
+        participants = gameManager.getAvailableParticipants();
         menuEntity(gameManager);
         std::cin >> choice;
 
@@ -93,6 +93,13 @@ void registerParticipant(GameManager &gameManager) {
     } while (choice != 0);
 }
 
+void getResult(GameManager &gameManager) {
+    const std::vector<std::pair<std::string, double>>& raceResults = gameManager.getResult();
+    for (const auto& result : raceResults) {
+        std::cout << "Participant: " << result.first << ", Total time: " << result.second << " hours\n";
+    }
+}
+
 void startRace(GameManager &gameManager) {
     std::vector<std::string> participants = gameManager.getRegisteredParticipants();
     if (participants.size() < 2) {
@@ -100,6 +107,7 @@ void startRace(GameManager &gameManager) {
         return;
     }
     gameManager.startRace();
+    getResult(gameManager);
 }
 
 void setMenuChoice(int choice, GameManager &gameManager) {
