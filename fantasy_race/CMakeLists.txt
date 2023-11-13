@@ -3,8 +3,7 @@ project(fantasy_race)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(fantasy_race main.cpp
-        RaceDLL/Entities/Entity.cpp
+set(source_dll RaceDLL/Entities/Entity.cpp
         RaceDLL/Entities/Entity.h
         RaceDLL/Entities/GroundEntities/GroundEntity.cpp
         RaceDLL/Entities/GroundEntities/GroundEntity.h
@@ -33,6 +32,14 @@ add_executable(fantasy_race main.cpp
         RaceDLL/Entities/AirEntities/Broomstick.h
         RaceDLL/Core/RaceCalculation.cpp
         RaceDLL/Core/RaceCalculation.h
+        RaceDLL/ExportImport.h
+)
+
+add_library(_race SHARED ${source_dll})
+
+add_executable(fantasy_race main.cpp
         UserInterface.cpp
         UserInterface.h
 )
+
+target_link_libraries(fantasy_race _race)

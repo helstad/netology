@@ -6,12 +6,11 @@
 class AirEntity : public Entity {
 private:
     static double AroundToTwoDecimalPlaces(double num);
-public:
-    AirEntity(std::string entityName, double entitySpeed);
 
     [[nodiscard]] virtual double getDistanceReduction(double distance) = 0;
 
+public:
+    AirEntity(std::string entityName, double entitySpeed);
+
     double getTotalTravelTime(double distance) override;
-
-
 };

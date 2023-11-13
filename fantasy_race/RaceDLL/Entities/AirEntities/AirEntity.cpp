@@ -9,7 +9,7 @@ double AirEntity::AroundToTwoDecimalPlaces(double num) {
 }
 
 double AirEntity::getTotalTravelTime(double distance) {
-    double reducedDistance = distance - getDistanceReduction(distance);
+    double reducedDistance = getDistanceReduction(distance);
     return AroundToTwoDecimalPlaces(reducedDistance / getSpeed());
 }
 

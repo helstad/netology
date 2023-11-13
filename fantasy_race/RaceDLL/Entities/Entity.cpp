@@ -6,7 +6,3 @@ Entity::Entity(std::string entityName, double entitySpeed)
 std::string Entity::getName() const { return name; }
 
 double Entity::getSpeed() const { return speed; }
-
-//double Entity::getTotalTravelTime(double distance) {
-//    return 0;
-//}

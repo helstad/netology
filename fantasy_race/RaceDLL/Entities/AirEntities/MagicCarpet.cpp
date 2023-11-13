@@ -3,13 +3,21 @@
 MagicCarpet::MagicCarpet() : AirEntity("Magic Carpet", 10) {}
 
 double MagicCarpet::getDistanceReduction(double distance) {
-    if (distance < 1000) {
-        return 1.0;
-    } else if (distance < 5000) {
-        return 0.97;
-    } else if (distance < 10000) {
-        return 0.9;
+    const double MIN_DISTANCE = 1000;
+    const double MEDIUM_DISTANCE = 5000;
+    const double MAX_DISTANCE = 10000;
+
+    const double COEFFICIENT_1 = 0.97;
+    const double COEFFICIENT_2 = 0.9;
+    const double COEFFICIENT_3 = 0.95;
+
+    if (distance < MIN_DISTANCE) {
+        return distance;
+    } else if (distance < MEDIUM_DISTANCE) {
+        return distance * COEFFICIENT_1;
+    } else if (distance < MAX_DISTANCE) {
+        return distance * COEFFICIENT_2;
     } else {
-        return 0.95;
+        return distance * COEFFICIENT_3;
     }
 }

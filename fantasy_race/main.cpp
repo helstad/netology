@@ -1,11 +1,7 @@
 #include "UserInterface.h"
 
 int main() {
-//    do {
-//        UserInterface::Main();
-//    } while (UserInterface::askForRestart());
-
-    UserInterface::Main();
+    UserInterface::Play();
 
     return 0;
 }

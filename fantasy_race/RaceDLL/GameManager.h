@@ -5,8 +5,9 @@
 #include "Entities/Track.h"
 #include "Core/ParticipantRegistry.h"
 #include "Core/RaceCalculation.h"
+#include "ExportImport.h"
 
-class GameManager {
+class RACE_API GameManager {
 private:
     Track track;
     ParticipantRegistry participantRegistry;
@@ -26,6 +27,4 @@ public:
     void resultRace(RaceCalculation &raceCalculation);
 
     std::vector<std::pair<std::string, double>> getResult();
-
-    void resetRace();
 };

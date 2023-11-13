@@ -5,7 +5,7 @@
 
 class UserInterface {
 public:
-    static void Main();
+    static void Play();
 
 private:
     static void menuMain(GameManager &gameManager);
@@ -32,4 +32,5 @@ private:
 
     static int menuRaceType();
 
+    static void askPlayAgain();
 };
