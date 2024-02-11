@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-BigInteger::BigInteger(std::string&& str) : value(std::move(str)) {}
+BigInteger::BigInteger(std::string &&str) : value(std::move(str)) {}
 
 BigInteger &BigInteger::operator=(std::string &&str) {
     value = std::move(str);
@@ -24,6 +24,24 @@ BigInteger BigInteger::operator+(const BigInteger &other) const {
     }
     std::reverse(result.begin(), result.end());
     return BigInteger(std::move(result));
+}
+
+BigInteger BigInteger::operator*(const BigInteger &other) const {
+    std::string result(value.size() + other.value.size(), '0');
+    for (int i = value.size() - 1; i >= 0; --i) {
+        int carry = 0;
+        for (int j = other.value.size() - 1; j >= 0; --j) {
+            int mul = (value[i] - '0') * (other.value[j] - '0') + carry + (result[i + j + 1] - '0');
+            result[i + j + 1] = mul % 10 + '0';
+            carry = mul / 10;
+        }
+        result[i] += carry;
+    }
+    auto pos = result.find_first_not_of('0');
+    if (pos != std::string::npos) {
+        return BigInteger(result.substr(pos));
+    }
+    return BigInteger("0");
 }
 
 std::ostream &operator<<(std::ostream &os, const BigInteger &bigint) {
