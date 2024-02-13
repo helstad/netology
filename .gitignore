@@ -4,6 +4,7 @@
 
 # Ignore build output directories
 **/cmake-build-*/
+**/build/
 
 # Ignore user-specific files
 *.user
