@@ -1,14 +1,22 @@
+#include <iostream>
 #include "Parser.hpp"
 
-#include <iostream>
-
-class MyParser : public INIp::Parser {
-    void ParseKVPair(const std::string& section, const std::string& key, const std::string& value) {
-        std::cout << "Section: " << section << " Key: " << key << " Value: " << value << std::endl;
-    }
-};
-
 int main() {
-    MyParser parser;
-    parser.AddFile("./config.ini");
+    try {
+        Parser parser("../config.ini");
+
+        auto var1_value = parser.get_value<std::string>("owner.name");
+        auto var2_value = parser.get_value<std::string>("data.theme");
+        auto var3_value = parser.get_value<std::string>("Section4.Vid");
+        auto var4_value = parser.get_value<double>("owner.variable");
+
+        std::cout << "Value: " << var1_value << std::endl;
+        std::cout << "Value: " << var2_value << std::endl;
+        std::cout << "Value: " << var3_value << std::endl;
+        std::cout << "Value: " << var4_value << std::endl;
+
+    } catch (const std::exception &e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+    return 0;
 }

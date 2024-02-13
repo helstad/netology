@@ -1,43 +1,34 @@
 #pragma once
 
 #include <string>
-#include <string_view>
-#include <fstream>
-#include <filesystem>
+#include <unordered_map>
+#include <vector>
 #include <stdexcept>
-#include <format>
-#include <cctype>
 
-namespace INIp {
-    class Exception : public std::runtime_error {
-        public:
-            using std::runtime_error::runtime_error;
+class Parser {
+public:
+    explicit Parser(const std::string &filename);
+
+    template<typename T>
+    T get_value(const std::string &variable_name) const;
+
+private:
+    struct variable {
+        std::string name;
+        std::string value;
     };
 
-    class Parser {
-        public:
-            void AddFile(const std::filesystem::path& path);
-            void AddString(const std::string_view& str);
-            void Reset();
-
-            virtual void ParseKVPair(const std::string& section, const std::string& key, const std::string& value) = 0;
-
-        private:
-            void ProcessChar(char c);
-
-        private:
-            enum class State {
-                ReadForData,
-                Comment,
-                Section,
-                KVKey,
-                KVKeyDone,
-                KVEqual,
-                KVValue,
-            };
-
-        private:
-            State m_state = State::ReadForData;
-            std::string m_currentSection, m_currentKey, m_currentValue;
+    struct section {
+        std::string name;
+        std::unordered_map<std::string, variable> variables;
     };
-}
+
+    std::unordered_map<std::string, section> sections;
+    std::string current_section;
+
+    void parse_file(const std::string &filename);
+
+    void parse_line(const std::string &line, int line_number);
+};
+
+#include "Parser.tpp"
