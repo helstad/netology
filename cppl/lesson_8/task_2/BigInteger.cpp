@@ -2,10 +2,19 @@
 
 #include <algorithm>
 
-BigInteger::BigInteger(std::string &&str) : value(std::move(str)) {}
+BigInteger::BigInteger(std::string &&str) noexcept: value(std::move(str)) {}
 
-BigInteger &BigInteger::operator=(std::string &&str) {
+BigInteger::BigInteger(BigInteger &&other) noexcept: value(std::move(other.value)) {}
+
+BigInteger &BigInteger::operator=(std::string &&str) noexcept {
     value = std::move(str);
+    return *this;
+}
+
+BigInteger& BigInteger::operator=(BigInteger&& other) noexcept {
+    if (this != &other) {
+        value = std::move(other.value);
+    }
     return *this;
 }
 
