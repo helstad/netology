@@ -126,8 +126,6 @@ void ControlDB::DeleteClient(int id) {
   std::cout << "Clients(" << id << ") successfully deleted!" << std::endl;
 }
 
-#include <format> // Для использования std::format
-
 void ControlDB::FindClient(const int id, const std::string& name,
                            const std::string& surname, const std::string& email,
                            const std::string& phone) {
@@ -136,7 +134,6 @@ void ControlDB::FindClient(const int id, const std::string& name,
 
     std::string query = "SELECT name, surname, email FROM clients WHERE 1=1 ";
 
-    // Если не указан id, выполняем поиск только по остальным параметрам
     if (id != 0) {
       query += std::format("AND id = {}", id);
     }
@@ -158,7 +155,6 @@ void ControlDB::FindClient(const int id, const std::string& name,
                 << email << ") found!" << std::endl;
     }
 
-    // Теперь выполняем поиск по номеру телефона только если он указан
     if (!phone.empty()) {
       std::string phone_query =
           std::format("SELECT client_id, phone FROM phones WHERE phone = '{}'", tx.esc(phone));
