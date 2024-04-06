@@ -1,21 +1,24 @@
 #pragma once
-
 #include <string>
+#include <vector>
 
 class Shape {
 public:
-  enum class Type { Line, Square, Cube, Circle, Cylinder };
+  enum class Type { line, sqr, cube, circle, cylinder };
 
-  Shape();
-  Shape(const std::initializer_list<int> &points);
-  Shape(const Type &type, double r, double h);
+  Shape(Type type, const std::vector<int> &coordinates);
+  Shape(Type type, int x1, int y1, double R, double H);
 
-  Type getType() const;
+  Type getType() const { return type; };
+  double getVolume() const { return volume; };
+  double getSquare() const { return square; };
+  const std::vector<int> &getCoordinates() const { return coordinates; }
 
 private:
   Type type;
+  std::vector<int> coordinates;
   double volume;
   double square;
-  double height;
-  double radius;
+
+  void calculateVolumeAndSquare();
 };
