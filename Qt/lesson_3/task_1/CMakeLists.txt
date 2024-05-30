@@ -24,6 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         dialogabout.h dialogabout.cpp dialogabout.ui
+        connect_db.h connect_db.cpp connect_db.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET task_1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

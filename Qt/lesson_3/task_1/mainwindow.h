@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dialogabout.h"
+#include "connect_db.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,12 +21,11 @@ public:
 
 private slots:
     void on_pb_about_clicked();
-    void updateButtonState();
-    void updateCheckBoxState();
-    void showTestInStatusBar();
+    void on_pb_create_clicked();
 
 private:
     Ui::MainWindow *ui;
     DialogAbout* dialogAbout;
+    ConnectDB* connectDB;
 };
 #endif // MAINWINDOW_H
