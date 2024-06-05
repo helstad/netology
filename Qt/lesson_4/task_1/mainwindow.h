@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,13 +18,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_toggled(bool checked);
+    void pushButtonClicked();
     void updateProgressBar();
     void onComboBoxValueChanged(int index);
     void onRadioButtonToggled(bool checked);
+    void resetState();
 
 private:
     Ui::MainWindow *ui;
-    QTimer *timer;
 };
 #endif // MAINWINDOW_H

@@ -4,7 +4,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , timer(new QTimer(this))
 {
     ui->setupUi(this);
 
@@ -15,11 +14,13 @@ MainWindow::MainWindow(QWidget *parent)
         ui->cb_gameList->addItem("Игра " + QString::number(i + 1));
     }
 
+    ui->pb_play->setText("Play button");
+    ui->pb_play->setCheckable(true);
+
     ui->pbar_load->setRange(0, 10);
     ui->pbar_load->setValue(0);
 
-    connect(ui->pb_play, &QPushButton::clicked, this, &MainWindow::on_pushButton_toggled);
-    connect(timer, &QTimer::timeout, this, &MainWindow::updateProgressBar);
+    connect(ui->pb_play, &QPushButton::clicked, this, &MainWindow::pushButtonClicked);
     connect(ui->cb_gameList, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onComboBoxValueChanged);
 
     connect(ui->rb_game, &QRadioButton::toggled, this, &MainWindow::onRadioButtonToggled);
@@ -31,47 +32,39 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_toggled(bool checked)
+void MainWindow::pushButtonClicked()
 {
-    if (checked)
-    {
-        timer->start(100);
-    } else {
-        timer->stop();
-        ui->pbar_load->setValue(0);
-    }
+    updateProgressBar();
 }
 
 void MainWindow::updateProgressBar()
 {
     int value = ui->pbar_load->value();
     value += 1;
+
     if (value > 10)
     {
         value = 0;
     }
+
     ui->pbar_load->setValue(value);
 }
 
 void MainWindow::onComboBoxValueChanged(int index)
 {
     Q_UNUSED(index);
-
-    if (ui->pb_play->isChecked())
-    {
-        ui->pb_play->setChecked(false);
-        timer->stop();
-        ui->pbar_load->setValue(0);
-    }
+    resetState();
 }
 
 void MainWindow::onRadioButtonToggled(bool checked)
 {
     Q_UNUSED(checked);
-    if (ui->pb_play->isChecked())
-    {
-        ui->pb_play->setChecked(false);
-        timer->stop();
-        ui->pbar_load->setValue(0);
-    }
+    ui->pb_play->setChecked(false);
+    ui->pbar_load->setValue(0);
+}
+
+void MainWindow::resetState()
+{
+    ui->pb_play->setChecked(false);
+    ui->pbar_load->setValue(0);
 }
