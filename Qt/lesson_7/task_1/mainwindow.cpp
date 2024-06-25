@@ -17,15 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {
     delete ui;
     delete series;
-
-    if (chartView) {
-        delete chartView->chart();
-        delete chartView;
-    }
-
-    if (chartWindow) {
-        delete chartWindow;
-    }
+    delete chartWindow;
 }
 
 QVector<uint32_t> MainWindow::ReadFile(QString path, uint8_t numberChannel) {
@@ -239,20 +231,24 @@ void MainWindow::displayChart() {
     chart->setTitle("ADC graphic data");
     chart->legend()->setVisible(false);
 
-    if (chartView) {
-        delete chartView->chart();
-        delete chartView;
-    }
-
     chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
     chartWindow = new QMainWindow();
     chartWindow->setCentralWidget(chartView);
     chartWindow->resize(800, 600);
+
+    connect(chartWindow, &QMainWindow::destroyed, this, &MainWindow::onChartWindowDestroyed);
+
     chartWindow->show();
 }
 
 void MainWindow::dataReadySlot() {
     displayChart();
+}
+
+void MainWindow::onChartWindowDestroyed() {
+    qDebug("Pointer deleted");
+    chartWindow = nullptr;
+    chartView = nullptr;
 }

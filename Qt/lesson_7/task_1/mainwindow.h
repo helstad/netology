@@ -27,31 +27,30 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QVector<uint32_t> ReadFile(QString path, uint8_t numberChannel);
-    QVector<double> ProcessFile(QVector<uint32_t> dataFile);
-    QVector<double> FindMax(QVector<double> resultData);
-    QVector<double> FindMin(QVector<double> resultData);
-    void DisplayResult(QVector<double> mins, QVector<double> maxs);
-
 private slots:
     void on_pb_path_clicked();
     void on_pb_start_clicked();
-    void displayChart();
     void dataReadySlot();
+    void onChartWindowDestroyed();
 
 signals:
     void dataReady();
 
 private:
     Ui::MainWindow *ui;
-    QString pathToFile = "";
-    uint8_t numberSelectChannel = 0xEA;
-
-    QVector<uint32_t> readData;
-    QVector<double> procesData;
-    QVector<double> mins, maxs;
     QLineSeries* series;
-    QPointer<QMainWindow> chartWindow;
-    QPointer<QChartView> chartView;
+    QMainWindow* chartWindow;
+    QChartView* chartView;
+
+    QString pathToFile;
+    uint8_t numberSelectChannel = 0xEA;
+    QVector<double> mins, maxs;
+
+    QVector<uint32_t> ReadFile(QString path, uint8_t numberChannel);
+    QVector<double> ProcessFile(QVector<uint32_t> dataFile);
+    QVector<double> FindMax(QVector<double> resultData);
+    QVector<double> FindMin(QVector<double> resultData);
+    void DisplayResult(QVector<double> mins, QVector<double> maxs);
+    void displayChart();
 };
 #endif // MAINWINDOW_H
