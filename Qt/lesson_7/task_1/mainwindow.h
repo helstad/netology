@@ -51,5 +51,7 @@ private:
     QVector<double> procesData;
     QVector<double> mins, maxs;
     QLineSeries* series;
+    QPointer<QMainWindow> chartWindow;
+    QPointer<QChartView> chartView;
 };
 #endif // MAINWINDOW_H

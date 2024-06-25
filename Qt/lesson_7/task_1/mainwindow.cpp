@@ -5,6 +5,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , series(new QLineSeries())
+    , chartWindow(nullptr)
+    , chartView(nullptr)
 {
     ui->setupUi(this);
     ui->pb_clearResult->setCheckable(true);
@@ -15,6 +17,15 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {
     delete ui;
     delete series;
+
+    if (chartView) {
+        delete chartView->chart();
+        delete chartView;
+    }
+
+    if (chartWindow) {
+        delete chartWindow;
+    }
 }
 
 QVector<uint32_t> MainWindow::ReadFile(QString path, uint8_t numberChannel) {
@@ -210,16 +221,33 @@ void MainWindow::on_pb_start_clicked()
 }
 
 void MainWindow::displayChart() {
+    if (chartWindow) {
+        chartWindow->close();
+        delete chartWindow;
+        chartWindow = nullptr;
+    }
+
     QChart *chart = new QChart();
-    chart->addSeries(series);
+
+    QLineSeries *newSeries = new QLineSeries();
+    for (int i = 0; i < series->count(); ++i) {
+        newSeries->append(series->at(i));
+    }
+
+    chart->addSeries(newSeries);
     chart->createDefaultAxes();
     chart->setTitle("ADC graphic data");
     chart->legend()->setVisible(false);
 
-    QChartView *chartView = new QChartView(chart);
+    if (chartView) {
+        delete chartView->chart();
+        delete chartView;
+    }
+
+    chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-    QMainWindow *chartWindow = new QMainWindow();
+    chartWindow = new QMainWindow();
     chartWindow->setCentralWidget(chartView);
     chartWindow->resize(800, 600);
     chartWindow->show();
