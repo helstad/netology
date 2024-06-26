@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QtGlobal>
 #include <QtConcurrent>
+#include <QPointer>
 
 ///Подключаем все что нужно для графиков
 #include <QChart>
@@ -39,8 +40,10 @@ signals:
 private:
     Ui::MainWindow *ui;
     QLineSeries* series;
-    QMainWindow* chartWindow;
-    QChartView* chartView;
+
+    QPointer<QMainWindow> chartWindow;
+    QPointer<QChartView> chartView;
+    QPointer<QChart> chart;
 
     QString pathToFile;
     uint8_t numberSelectChannel = 0xEA;

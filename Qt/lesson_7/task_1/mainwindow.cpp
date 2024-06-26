@@ -5,8 +5,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , series(new QLineSeries())
-    , chartWindow(nullptr)
-    , chartView(nullptr)
 {
     ui->setupUi(this);
     ui->pb_clearResult->setCheckable(true);
@@ -17,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {
     delete ui;
     delete series;
-    delete chartWindow;
 }
 
 QVector<uint32_t> MainWindow::ReadFile(QString path, uint8_t numberChannel) {
@@ -171,7 +168,6 @@ void MainWindow::on_pb_path_clicked()
 
 void MainWindow::on_pb_start_clicked()
 {
-    //проверка на то, что файл выбран
     if(pathToFile.isEmpty()){
         QMessageBox mb;
         mb.setWindowTitle("Ошибка");
@@ -215,13 +211,14 @@ void MainWindow::on_pb_start_clicked()
 void MainWindow::displayChart() {
     if (chartWindow) {
         chartWindow->close();
-        delete chartWindow;
         chartWindow = nullptr;
+        chartView.clear();
+        chart.clear();
     }
 
-    QChart *chart = new QChart();
-
+    chart = new QChart();
     QLineSeries *newSeries = new QLineSeries();
+
     for (int i = 0; i < series->count(); ++i) {
         newSeries->append(series->at(i));
     }
@@ -235,6 +232,7 @@ void MainWindow::displayChart() {
     chartView->setRenderHint(QPainter::Antialiasing);
 
     chartWindow = new QMainWindow();
+    chartWindow->setAttribute(Qt::WA_DeleteOnClose);
     chartWindow->setCentralWidget(chartView);
     chartWindow->resize(800, 600);
 
@@ -248,7 +246,7 @@ void MainWindow::dataReadySlot() {
 }
 
 void MainWindow::onChartWindowDestroyed() {
-    qDebug("Pointer deleted");
-    chartWindow = nullptr;
-    chartView = nullptr;
+    chartWindow.clear();
+    chartView.clear();
+    chart.clear();
 }
